@@ -12,7 +12,7 @@ con parámetros de ruta y deben estar bien aplicados.
 5. Se deberá aplicar Programación Orientada a Objetos lo más que se pueda.
 6. Las vistas deberán ser basadas en clases
 7. Se deben utilizar templates que cumplan con las siguientes características:
-
+7.1. Deben estar asociados a las vistas
 7.2. Debe existir la relación de herencia entre los templates (utilizando el base.html).
 7.3. Deben aplicarse filtros en los templates.
 7.4. Los templates deberán utilizar archivos estáticos (js, css, etc).
