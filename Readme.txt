@@ -35,7 +35,6 @@ cumplir con las siguientes características
 12. El proyecto debe poseer páginas a las que solo se pueda acceder mediante autenticación y
 la misma debe ser validada tanto en el front-end como en el back-end.
 
-1
 Para aprobar el proyecto, el código deberá entregarse en tiempo y forma, además se deberá realizar
 una exposición del mismo de forma individual mostrando tanto el funcionamiento como su código.
 La exposición no debe durar más de 20 minutos.
