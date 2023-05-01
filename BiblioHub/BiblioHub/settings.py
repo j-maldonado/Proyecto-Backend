@@ -41,7 +41,14 @@ DJANGO_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-]
+    ]
+
+App_Sistema=['apps.libro'
+            'apps.autor'
+            'apps.genero'
+            'apps.cliente']
+
+LOCAL_APPS=[App_Sistema+INSTALLED_APPS]
 
 
 APPS_SISTEMAS =[
