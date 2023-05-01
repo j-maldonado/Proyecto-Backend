@@ -4,4 +4,6 @@ from .models import Autor
 @admin.register(Autor)
 
 class AutorAdmin(admin.ModelAdmin):
-    list_display=('nombre')
+    list_display=(
+        'nombre',
+    )
