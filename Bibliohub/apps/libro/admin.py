@@ -5,5 +5,5 @@ from .models import Libro
 
 class LibroAdmin(admin.ModelAdmin):
     list_display=(
-        'nombre',
+        'titulo',
     )
