@@ -1,8 +1,7 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
-
+from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.views.generic.base import TemplateView
 from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView
@@ -26,7 +25,7 @@ def books(request):
 def book(request, id):
     return BookTemplateView.as_view()(request, id=id)
 
-
+@method_decorator(login_required, name='dispatch')
 class BooksTemplateView(TemplateView):
     template_name = 'books.html'
     paginate_by = 10
@@ -45,7 +44,7 @@ class BooksTemplateView(TemplateView):
         return context
 
     
-
+@method_decorator(login_required, name='dispatch')
 class BookTemplateView(TemplateView):
     template_name = 'book.html'
     
@@ -58,29 +57,33 @@ class BookTemplateView(TemplateView):
         context["field_keys"] = [field.verbose_name for field in Libro._meta.get_fields()]
         return context
 
+@method_decorator(login_required, name='dispatch')
 class BookList(ListView):
     model = Libro
     template_name = 'book_list.html'
     context_object_name = 'libro'
 
-
+@method_decorator(login_required, name='dispatch')
 class BookCreate(CreateView):
     model = Libro
     template_name = 'book_form.html'
     fields = ['titulo', 'autor', 'genero', 'isbn','borrado','disponible']
     success_url = reverse_lazy('books')
 
+@method_decorator(login_required, name='dispatch')
 class BookDetail(DetailView):
     model = Libro
     template_name = 'book_detail.html'
     context_object_name = 'book'
 
+@method_decorator(login_required, name='dispatch')
 class BookUpdate(UpdateView):
     model = Libro
     template_name = 'book_form.html'
     fields = ['titulo', 'autor', 'genero', 'isbn','borrado','disponible']
     success_url = reverse_lazy('books')
 
+@method_decorator(login_required, name='dispatch')
 class BookDelete(DeleteView):
     model = Libro
     template_name = 'book_confirm_delete.html'

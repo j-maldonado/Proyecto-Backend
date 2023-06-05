@@ -58,6 +58,7 @@ INSTALLED_APPS= DJANGO_APPS + APPS_SISTEMAS
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django_session_timeout.middleware.SessionTimeoutMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -154,3 +155,11 @@ STATIC_ROOT = BASE_DIR / 'static_root'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '/'
+
+LOGIN_URL = '/ingresar/'
+
+SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True #esto hace que expire despues de un tiempo de inactividad en la aplicacion
+
+SESSION_EXPIRE_SECONDS = 600  # 1 hora = 3600
+
+SESSION_TIMEOUT_REDIRECT = '/ingresar/'

@@ -1,7 +1,7 @@
 from django.db import models
 
 class Libro(models.Model):
-    titulo= models.TextField(max_length=200, verbose_name='Nombre')
+    titulo= models.CharField(max_length=200, verbose_name='Nombre')
     autor= models.ForeignKey(
         'autor.Autor', 
         on_delete=models.DO_NOTHING,
@@ -32,17 +32,21 @@ class Libro(models.Model):
         return self.genero.nombre
     
     def borrado_logico(self):
-        self.borrado = True
-        super().save()
+        if self.borrado == False:
+            self.borrado = True
+            self.disponible = False
+            super().save()
 
     def restarurar(self):
-        self.borrado = False
-        super().save()
+        if self.borrado:
+            self.borrado = False
+            self.disponible = True
+            super().save()
 
     def prestado(self):
         self.disponible = False
         super().save()
-
+    
     def devuelto(self):
         self.disponible = True
         super().save()
