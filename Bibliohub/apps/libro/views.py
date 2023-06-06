@@ -3,6 +3,7 @@ from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.base import TemplateView
 from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView
 from django.urls import reverse_lazy
@@ -33,7 +34,7 @@ class BooksTemplateView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        books = Libro.objects.all()
+        books = Libro.objects.filter(borrado=False)
         paginator = Paginator(books,self.paginate_by)
         page_number = self.request.GET.get("page") 
         context['books']= paginator.get_page(page_number)
@@ -45,7 +46,7 @@ class BooksTemplateView(TemplateView):
 
     
 
-class BookTemplateView(TemplateView):
+class BookTemplateView(LoginRequiredMixin,TemplateView):
     template_name = 'book.html'
     
     def get_context_data(self, **kwargs):
@@ -57,8 +58,8 @@ class BookTemplateView(TemplateView):
         context["field_keys"] = [field.verbose_name for field in Libro._meta.get_fields()]
         return context
 
-@method_decorator(login_required, name='dispatch')
-class BookList(ListView):
+
+class BookList(LoginRequiredMixin,ListView):
     model = Libro
     template_name = 'book_list.html'
     context_object_name = 'libro'
