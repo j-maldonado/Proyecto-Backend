@@ -4,6 +4,7 @@ from .models import Cliente
 from django.views.generic.base import TemplateView
 from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
 
@@ -55,8 +56,8 @@ class ClienteList(ListView):
     template_name = 'cliente.html'
     context_object_name = 'clientes'
 
-@method_decorator(login_required, name='dispatch')  
-class ClienteCreate(CreateView):
+
+class ClienteCreate(LoginRequiredMixin,CreateView):
     model = Cliente
     template_name = 'client_form.html'
     fields = ['nombre', 'apellido', 'dni', 'fecha_nacimiento','email','domicilio']

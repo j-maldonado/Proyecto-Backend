@@ -44,7 +44,7 @@ class BooksTemplateView(TemplateView):
         return context
 
     
-@method_decorator(login_required, name='dispatch')
+
 class BookTemplateView(TemplateView):
     template_name = 'book.html'
     
