@@ -1,5 +1,5 @@
 """
-WSGI config for Bibliohub project.
+WSGI config for BiblioHub project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Bibliohub.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'BiblioHub.settings')
 
 application = get_wsgi_application()
